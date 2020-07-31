@@ -7,6 +7,8 @@ module.exports = (_chai, utils) => {
   function assertCheckTag(selector, attribute, value, optionalAttribute) {
     const obj = this._obj;
 
+    this.assert(obj, 'No HTML content rendered', 'No HTML content rendered');
+
     const $ = cheerio.load(obj.toString());
 
     const selections = $(selector);

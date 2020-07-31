@@ -62,22 +62,26 @@ and _not_ the test database.
 **You** will be responsible for creating, migrating, and seeding the data in
 your development database.
 
-Run your tests with `npm test`.
+Run your tests with `npm test`. You can run `npm test test/test-file-name.js`
+to run the tests for a specific part of the assessment.
+  - Example: To only run the test `01-form-page.js` do, 
+    `npm test test/01-form-page.js`
 
-If you get tired of seeing all of the Sequelize failures, you can try running
-`npm test 2> /dev/null` which should redirect the annoying messages into
-oblivion but leave the mocha output available for you to read. This may prevent
-you from seeing other errors, though, so make sure to run it without the
-`2> /dev/null` if you're trying to get a test to pass and need to see error
-output.
+If you get tired of seeing all of the Sequelize failures, you can try running:
+
+```
+npm test 2> /dev/null
+``` 
+
+That should redirect the annoying messages into oblivion but leave the
+mocha output available for you to read. This may prevent you from seeing other
+errors, though, so make sure to run it without the `2> /dev/null` if you're 
+trying to get a test to pass and need to see error output.
 
 ## App Requirements
 
 These are the requirements for the application. Follow them closely. The tests
-will attempt to read data from your rendered HTML. The tests will **not** make
-any connections to your database. However, the name of the login, the login
-password, and the database are provided for you so that instructors can easily
-run your code, if need be.
+will attempt to read data from your rendered HTML. 
 
 Read all of the requirements. Determine the data needed to include in your data
 model.
@@ -86,15 +90,39 @@ Please use port 8081 for your Express.js server.
 
 ### The database
 
-* The login name that you must use is "express_assessment_app"
+Create a database user with `CREATEDB` priveleges:
+* The login username that you must use is "express_assessment_app"
 * The login password that you must use is "3GsLEDYhcCi4WJ8y"
-* Your user must have the CREATEDB privilege so that you can run
-  `npx sequelize-cli db:create`
-* The database prefix for your databases must be "express_assessment" so that
-  you will have in your Sequelize config file:
-  * "express_assessment_development"
-  * "express_assessment_test" (won't be used by the tests)
-  * "express_assessment_production" (won't be used by the tests)
+
+Initialize Sequelize in your assessment and use the following configuration in
+your `config/config.json` file:
+
+```json
+{
+  "development": {
+    "username": "express_assessment_app",
+    "password": "3GsLEDYhcCi4WJ8y",
+    "database": "express_assessment_development",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "seederStorage": "sequelize",
+    "logging": false
+  }
+}
+```
+
+Remove `logging: false` if you want to see SQL output in your terminal when 
+running tests with `npm test`. 
+
+Create the `development` database with those configurations.
+
+For this assessment, the tests will be using your `development` database
+configuration defined in the `config.json` file. **The tests will not be
+testing your database explicitly, but test specs DO rely on you setting up the
+database AND database constraints properly.** 
+
+You will need to generate and run the migrations, models, and seeders. There is 
+no need to run `npm test` until after doing this.
 
 ### The data model
 
@@ -102,25 +130,53 @@ Here is a picture of the data model used in this assessment.
 
 ![data model](./documentation/express-application-assessment-data-model.png)
 
-You will need to store "entree" data and "entree type" data. The entree type
-data should have the following definition.
+You will need to store "Entree" data and "EntreeType" data. 
 
-| Attribute name | Attribute type              | Constraints          |
-|----------------|-----------------------------|----------------------|
-| name           | Up to 20 characters of text | unique, not nullable |
-| isVegetarian   | Boolean                     | not nullable         |
+Generate a model (and migration) for the "EntreeType" model with the attributes:
 
+| Attribute name | Attribute type | Constraints          |
+|----------------|----------------|----------------------|
+| name           | string         | unique, not nullable |
+| isVegetarian   | boolean        | not nullable         |
 
-The entree data should have the following definition.
+Configure the migration so that:
 
-| Attribute name | Attribute type                                | Constraints                              |
-|----------------|-----------------------------------------------|------------------------------------------|
-| name           | strings up to 70 characters in length         | unique, not nullable                     |
-| description    | text of any length                            |                                          |
-| price          | NUMERIC(6, 2) to support numbers like XXXX.XX | not nullable                             |
-| entreeTypeId   | integer                                       | not nullable, references the entree type |
+- the "name" column will hold values up to 20 characters in length and be unique
+  and non allow `NULL`s
+- the "isVegetarian" column will not allow `NULL`s
 
-Moreover, the entree types data must have the following pre-defined data in it
+Generate a model (and migration) for the "Entree" model with the attributes:
+
+| Attribute name | Attribute type | Constraints                              |
+|----------------|----------------|------------------------------------------|
+| name           | string         | unique, not nullable                     |
+| description    | text           |                                          |
+| price          | numeric        | not nullable                             |
+| entreeTypeId   | integer        | not nullable, references EntreeTypes |
+
+Configure the migration so that:
+
+- the "name" column will hold values up to 70 characters in length and be unique
+  and not allow `NULL`s
+- the "price" column will not allow `NULL`s and have a precision of (6, 2) to 
+  support numbers like XXXX.XX 
+- the "entreeTypeId" will not allow `NULL`s and references the "EntreeTypes"
+  table
+
+Create a seeder file for `EntreeTypes`:
+
+```js
+{ name: "Beef",  isVegetarian: false, createdAt: '2019-04-12', updatedAt: '2019-04-12'},
+{ name: "Chicken",  isVegetarian: false, createdAt: '2019-04-12', updatedAt: '2019-04-12' },
+{ name: "Goat",  isVegetarian: false, createdAt: '2019-04-12', updatedAt: '2019-04-12' },
+{ name: "Jackfruit",  isVegetarian: true, createdAt: '2019-04-12', updatedAt: '2019-04-12' },
+{ name: "Plant-based",  isVegetarian: true, createdAt: '2019-04-12', updatedAt: '2019-04-12' },
+{ name: "Pork",  isVegetarian: false, createdAt: '2019-04-12', updatedAt: '2019-04-12' },
+{ name: "Soy",  isVegetarian: true, createdAt: '2019-04-12', updatedAt: '2019-04-12' },
+```
+
+If you set up the seeder correctly, the `EntreeTypes` data should have the
+following pre-defined data in it:
 
 | name        | isVegetarian |
 |-------------|--------------|
@@ -132,21 +188,14 @@ Moreover, the entree types data must have the following pre-defined data in it
 | Pork        | False        |
 | Soy         | True         |
 
-If you use Sequelize CLI seeders, don't forget to add the entry:
-
-```
-"seederStorage": "sequelize"
-```
-
-to the config.json so that it will track your seed files and not run them too
-many times.
-
 **NOTE:** All of the data constraints for this assessment can be handled by the
 database with the `allowNull` and `unique` flags in your migrations. You **do
 not** need to use form validations in this project. They are good to have, in
 real applications, but can require too much time for you to integrate them into
 this project. Again, you **do not** need to use a form validator, just use
 database constraints and let the errors turn into 500 status codes by Express.
+
+Make sure to make the appropriate associations.
 
 After you've generated your models, migrations, and seeder files, don't forget
 to migrate and seed your database with the appropriate Sequelize CLI commands.
@@ -155,7 +204,7 @@ to migrate and seed your database with the appropriate Sequelize CLI commands.
 
 You must use the **app.js** file to create and configure your Express
 application. You must store the instance of your Express.js application in a
-variable named "app". That is what is exported at the bottom of the **app.js**
+variable named `app`. That is what is exported at the bottom of the **app.js**
 file.
 
 Set up your CSRF middleware to use cookies.
@@ -180,10 +229,21 @@ In the form, you should have these inputs with the provided names:
 
 You should also have a submit button.
 
-Please refer to the screenshots.
+Please refer to the screenshots below.
+
+New Entree Form:
 
 ![New entree form](./documentation/express-application-assessment-entree-creation-form.png)
+
+New Entree form with expanded dropdown:
+
 ![New entree form with expanded dropdown](./documentation/express-application-assessment-entree-creation-form-with-dropdown.png)
+
+To test this route, run:
+
+```
+npm test test/01-form-page.js
+```
 
 ### The route "POST /entrees"
 
@@ -199,6 +259,12 @@ database constraints and let the errors turn into 500 status codes by Express.
 If the data does not pass validation, then no new record should be created. It
 is ok to just let Express return an error code of 500 in this case. **Note**:
 you would not do this in a real application.
+
+To test this route, run:
+
+```
+npm test test/02-submission-page.js
+```
 
 ### The route "GET /"
 
@@ -244,6 +310,12 @@ regular expression.
 ```
 
 The regular expression will ignore any attributes that you put on the table data
-tag as well as any white space around the entry for the data value.
+tag as well as any accidental white space around the entry for the data value.
 
 Again, the styling is not important to the tests.
+
+To test this route, run:
+
+```
+npm test test/03-main-page.js
+```
