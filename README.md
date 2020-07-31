@@ -142,7 +142,7 @@ Generate a model (and migration) for the "EntreeType" model with the attributes:
 Configure the migration so that:
 
 - the "name" column will hold values up to 20 characters in length and be unique
-  and non allow `NULL`s
+  and not allow `NULL`s
 - the "isVegetarian" column will not allow `NULL`s
 
 Generate a model (and migration) for the "Entree" model with the attributes:
@@ -268,7 +268,7 @@ npm test test/02-submission-page.js
 
 ### The route "GET /"
 
-When someone accesses your application, they should see a the entrees that
+When someone accesses your application, they should see the entrees that
 are stored in your database. The details should contain:
 
 * The entree name
