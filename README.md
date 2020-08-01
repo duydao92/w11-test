@@ -134,10 +134,10 @@ You will need to store "Entree" data and "EntreeType" data.
 
 Generate a model (and migration) for the "EntreeType" model with the attributes:
 
-| Attribute name | Attribute type | Constraints          |
-|----------------|----------------|----------------------|
-| name           | string         | unique, not nullable |
-| isVegetarian   | boolean        | not nullable         |
+| Attribute name | Attribute type | Sequelize datatype | Constraints          |
+|----------------|----------------|--------------------|----------------------|
+| name           | string         | STRING(20)         | unique, not nullable |
+| isVegetarian   | boolean        | BOOLEAN            | not nullable         |
 
 Configure the migration so that:
 
@@ -147,12 +147,12 @@ Configure the migration so that:
 
 Generate a model (and migration) for the "Entree" model with the attributes:
 
-| Attribute name | Attribute type | Constraints                              |
-|----------------|----------------|------------------------------------------|
-| name           | string         | unique, not nullable                     |
-| description    | text           |                                          |
-| price          | numeric        | not nullable                             |
-| entreeTypeId   | integer        | not nullable, references EntreeTypes |
+| Attribute name | Attribute type | Sequelize datatype | Constraints                          |
+|----------------|----------------|--------------------|--------------------------------------|
+| name           | string         | STRING(70)         | unique, not nullable                 |
+| description    | text           | TEXT               |                                      |
+| price          | numeric        | NUMERIC(6, 2)      | not nullable                         |
+| entreeTypeId   | integer        | INTEGER            | not nullable, references EntreeTypes |
 
 Configure the migration so that:
 
