@@ -30,7 +30,6 @@ the **package.json** for your convenience.
 * CSURF middleware
 * Pug.js
 * cookie-parser middleware
-* body-parser middleware
 * nodemon (for development purposes)
 
 A **package.json** file already exists with the dependencies. Please run `npm
