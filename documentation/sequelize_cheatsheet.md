@@ -114,7 +114,7 @@ $ npx sequelize-cli db:seed:undo:all
 
 ```js
     const columnMapping = {
-        through: 'StudentLesson', // This is the model name referencing the join table.
+        through: models.StudentLesson, // This is the model name referencing the join table.
         otherKey: 'lessonId',
         foreignKey: 'studentId'
     }
@@ -126,7 +126,7 @@ $ npx sequelize-cli db:seed:undo:all
 
 ```js
     const columnMapping = {
-        through: 'StudentLesson', // This is the model name referencing the join table.
+        through: models.StudentLesson, // This is the model name referencing the join table.
         otherKey: 'studentId',
         foreignKey: 'lessonId'
     }
