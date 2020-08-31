@@ -1,5 +1,12 @@
 # Express Application Assessment
 
+## Approved Documentation
+* [ExpressJS Documentation](https://expressjs.com/)
+* [Pug Documentation](http://pugjs.org/)
+* [csurf Library Documentation](https://github.com/expressjs/csurf#readme)
+* [Sequelize Documentation](https://sequelize.org/v5/)
+* [Sequelize Cheatsheet](./documentation/sequelize_cheatsheet.md)
+
 **Note:** To read this in a rendered view, open your VS Code Command Palette
 (using Control+Shift+P on Windows, Command+Shift+P on macOS) and choose
 "Markdown: Open Preview" or "Markdown: Open Preview to Side".
@@ -30,7 +37,6 @@ the **package.json** for your convenience.
 * CSURF middleware
 * Pug.js
 * cookie-parser middleware
-* body-parser middleware
 * nodemon (for development purposes)
 
 A **package.json** file already exists with the dependencies. Please run `npm
