@@ -97,8 +97,8 @@ Please use port 8081 for your Express.js server.
 ### The database
 
 Create a database user with `CREATEDB` priveleges:
-* The login username that you must use is "express_assessment_app"
-* The login password that you must use is "3GsLEDYhcCi4WJ8y"
+* The login username that you must use is "app_academy"
+* The login password that you must use is "password"
 
 Initialize Sequelize in your assessment and use the following configuration in
 your `config/config.json` file:
@@ -106,8 +106,8 @@ your `config/config.json` file:
 ```json
 {
   "development": {
-    "username": "express_assessment_app",
-    "password": "3GsLEDYhcCi4WJ8y",
+    "username": "app_academy",
+    "password": "password",
     "database": "express_assessment_development",
     "host": "127.0.0.1",
     "dialect": "postgres",
