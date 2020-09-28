@@ -337,7 +337,7 @@ When you are ready to submit:
 2. Zip up your folder
 3. Upload it
 
-[data-model]: https://appacademy-open-assets.s3-us-west-1.amazonaws.com/Modular-Curriculum/content/express/assessments/version-a-v2/assets/express-application-assessment-data-model.png
+[data model]: https://appacademy-open-assets.s3-us-west-1.amazonaws.com/Modular-Curriculum/content/express/assessments/version-a-v2/assets/express-application-assessment-data-model.png
 [New entree form]: https://appacademy-open-assets.s3-us-west-1.amazonaws.com/Modular-Curriculum/content/express/assessments/version-a-v2/assets/express-application-assessment-entree-creation-form.png
 [New entree form with expanded dropdown]: https://appacademy-open-assets.s3-us-west-1.amazonaws.com/Modular-Curriculum/content/express/assessments/version-a-v2/assets/express-application-assessment-entree-creation-form-with-dropdown.png
 [main entree page]: https://appacademy-open-assets.s3-us-west-1.amazonaws.com/Modular-Curriculum/content/express/assessments/version-a-v2/assets/express-application-assessment-main-entrees-page.png
