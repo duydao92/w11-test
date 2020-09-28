@@ -100,6 +100,9 @@ Create a database user with `CREATEDB` priveleges:
 * The login username that you must use is "app_academy"
 * The login password that you must use is "password"
 
+**Note**: You should _never_ set the password of a database user to something so
+easy to guess. This is merely for the convenience of grading this assessment.
+
 Initialize Sequelize in your assessment and use the following configuration in
 your `config/config.json` file:
 
@@ -134,7 +137,7 @@ no need to run `npm test` until after doing this.
 
 Here is a picture of the data model used in this assessment.
 
-![data model](./documentation/express-application-assessment-data-model.png)
+![data model]
 
 You will need to store "Entree" data and "EntreeType" data. 
 
@@ -239,11 +242,11 @@ Please refer to the screenshots below.
 
 New Entree Form:
 
-![New entree form](./documentation/express-application-assessment-entree-creation-form.png)
+![New entree form]
 
 New Entree form with expanded dropdown:
 
-![New entree form with expanded dropdown](./documentation/express-application-assessment-entree-creation-form-with-dropdown.png)
+![New entree form with expanded dropdown]
 
 To test this route, run:
 
@@ -288,7 +291,7 @@ entree "John's Impossible Burger" with a description "Plant-based yumminess on a
 bun with brown-ale mustard." and a price of "10.34" and the entree type of
 "Plant-based", you should present it like this.
 
-![main entree page](./documentation/express-application-assessment-main-entrees-page.png)
+![main entree page]
 
 To create a table in a Pug.js template, you'll use something like the following
 code. You probably already know this, but it's included for your reference.
@@ -325,3 +328,16 @@ To test this route, run:
 ```
 npm test test/03-main-page.js
 ```
+
+## Submission
+
+When you are ready to submit:
+
+1. Delete the `node_modules` directory
+2. Zip up your folder
+3. Upload it
+
+[data-model]: https://appacademy-open-assets.s3-us-west-1.amazonaws.com/Modular-Curriculum/content/express/assessments/version-a-v2/assets/express-application-assessment-data-model.png
+[New entree form]: https://appacademy-open-assets.s3-us-west-1.amazonaws.com/Modular-Curriculum/content/express/assessments/version-a-v2/assets/express-application-assessment-entree-creation-form.png
+[New entree form with expanded dropdown]: https://appacademy-open-assets.s3-us-west-1.amazonaws.com/Modular-Curriculum/content/express/assessments/version-a-v2/assets/express-application-assessment-entree-creation-form-with-dropdown.png
+[main entree page]: https://appacademy-open-assets.s3-us-west-1.amazonaws.com/Modular-Curriculum/content/express/assessments/version-a-v2/assets/express-application-assessment-main-entrees-page.png
